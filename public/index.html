@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodeAlpha - Project Management Tool</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Real-Time Toast Notification Banner -->
+  <div id="notification-bar" class="notification hidden"></div>
+
+  <!-- 1. AUTHENTICATION SECTION (Login / Register) -->
+  <div id="auth-section" class="auth-container">
+    <h2>Project Management Tool</h2>
+    <p>Collaborative Workspace (Trello / Asana Style)</p>
+    <input type="text" id="username" placeholder="Enter your username" />
+    <input type="password" id="password" placeholder="Enter your password" />
+    <div class="auth-buttons">
+      <button onclick="login()">Login</button>
+      <button onclick="register()" class="secondary-btn">Register</button>
+    </div>
+  </div>
+
+  <!-- 2. MAIN COLLABORATIVE BOARD SECTION -->
+  <div id="app-section" class="hidden">
+    <header>
+      <div class="brand">
+        <h2>📋 Project Management Board</h2>
+      </div>
+      <div class="header-right">
+        <!-- Real-Time Notifications Dropdown -->
+        <div class="notif-wrapper">
+          <button onclick="toggleNotifications()" class="notif-btn">
+            🔔 Notifications <span id="notif-count" class="badge">0</span>
+          </button>
+          <div id="notif-dropdown" class="notif-dropdown hidden">
+            <div class="notif-header">
+              <strong>Real-Time Activity Log</strong>
+              <button onclick="clearNotifications()" class="clear-btn">Clear</button>
+            </div>
+            <div id="notif-list" class="notif-list">
+              <p class="empty-notif">No recent notifications.</p>
+            </div>
+          </div>
+        </div>
+
+        <span id="welcome-user"></span>
+        <button onclick="logout()" class="logout-btn">Logout</button>
+      </div>
+    </header>
+
+    <!-- Group Project & Team Members Bar -->
+    <div class="project-bar">
+      <div class="project-select-group">
+        <label><strong>Active Group Project:</strong></label>
+        <select id="project-select" onchange="renderBoard()"></select>
+      </div>
+
+      <div class="create-box">
+        <input type="text" id="new-project-name" placeholder="Enter new project name..." />
+        <button onclick="createProject()">+ Create Group Project</button>
+      </div>
+
+      <div class="member-box">
+        <select id="add-member-select">
+          <option value="">Add user to project...</option>
+        </select>
+        <button onclick="addMemberToProject()" class="secondary-btn">+ Add Member</button>
+      </div>
+
+      <div id="project-members-display" class="members-pills"></div>
+    </div>
+
+    <!-- Create & Assign Task Card Controls -->
+    <div class="task-creator">
+      <input type="text" id="new-task-title" placeholder="Enter task title..." />
+      <input type="text" id="new-task-desc" placeholder="Short description (optional)..." />
+      <select id="new-task-priority">
+        <option value="Medium">Priority: Medium</option>
+        <option value="High">Priority: High</option>
+        <option value="Low">Priority: Low</option>
+      </select>
+      <input type="date" id="new-task-date" title="Due Date" />
+      <select id="assign-user-select">
+        <option value="Unassigned">Assign to User...</option>
+      </select>
+      <button onclick="createTask()">+ Add Task Card</button>
+    </div>
+
+    <!-- Project Board Columns (To Do, In Progress, Done) -->
+    <div class="board">
+      <div class="column">
+        <div class="column-header">
+          <h3>To Do</h3>
+          <span id="count-todo" class="col-count">0</span>
+        </div>
+        <div id="col-todo" class="task-list"></div>
+      </div>
+
+      <div class="column">
+        <div class="column-header">
+          <h3>In Progress</h3>
+          <span id="count-progress" class="col-count">0</span>
+        </div>
+        <div id="col-progress" class="task-list"></div>
+      </div>
+
+      <div class="column">
+        <div class="column-header">
+          <h3>Done</h3>
+          <span id="count-done" class="col-count">0</span>
+        </div>
+        <div id="col-done" class="task-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Socket.io & Frontend Script -->
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

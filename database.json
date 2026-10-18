@@ -1,0 +1,50 @@
+{
+  "users": [
+    {
+      "id": "1792326397427",
+      "username": "vip21",
+      "password": "7469876"
+    },
+    {
+      "id": "1792327513047",
+      "username": "Visan",
+      "password": "421562431"
+    }
+  ],
+  "projects": [
+    {
+      "id": "1792326483331",
+      "name": "terafjg",
+      "createdBy": "vip21",
+      "members": [
+        "vip21",
+        "Visan"
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "1792326488520",
+      "projectId": "1792326483331",
+      "title": "afgbfchfghj",
+      "assignedTo": "Unassigned",
+      "status": "To Do"
+    }
+  ],
+  "comments": [
+    {
+      "id": "1792326493719",
+      "taskId": "1792326488520",
+      "author": "vip21",
+      "text": "vxzfsr",
+      "time": "5:58:13 pm"
+    },
+    {
+      "id": "1792326497723",
+      "taskId": "1792326488520",
+      "author": "vip21",
+      "text": "afs",
+      "time": "5:58:17 pm"
+    }
+  ]
+}
